@@ -144,9 +144,10 @@ Consejo: junta varias notas en un solo PR al final del día; no hace falta un PR
 | Quién | Qué mantiene |
 |---|---|
 | Cada dueño de módulo | Su nota en `02 Módulos` y las notas de sus tablas en `07 Base de datos` |
+| Wilson (base de datos) | [[Esquema de la base de datos]] y revisa las notas de tablas |
 | Diego (PO) | `03 Decisiones`, `05 Entrevistas`, [[Contexto del proyecto]] |
 | Facilitador de la Retro | La sección Retro de la nota del sprint en `04 Sprints` |
-| Wilson (documentación) | Revisa que todo esté al día al cerrar cada sprint |
+| Daniel (documentación) | Coordina la bóveda: revisa que todo esté al día al cerrar cada sprint y crea la nota del sprint |
 | Todos | `06 Aprendizaje` cada vez que algo les costó horas |
 
 Volver a [[00 Inicio]]

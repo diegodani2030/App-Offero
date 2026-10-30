@@ -8,7 +8,7 @@ fecha: 2026-10-29
 
 - **Estado:** Tomada
 - **Decide:** Diego (PO)
-- **Decisión:** offero-dev para pruebas y offero-prod solo con datos reales; solo Diego ejecuta SQL en prod.
+- **Decisión:** offero-dev para pruebas y offero-prod solo con datos reales; SQL en prod solo Wilson y Diego (actualizado por [[D-10 Wilson responsable de la base de datos]]).
 - **Motivo:** Regla de «sin datos ficticios» en producción.
 - **Alternativas:** _(completar)_
 - **Consecuencias:** _(completar)_

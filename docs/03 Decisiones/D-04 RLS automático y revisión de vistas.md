@@ -8,7 +8,7 @@ fecha: 2026-10-29
 
 - **Estado:** Tomada
 - **Decide:** Diego (PO)
-- **Decisión:** RLS automático activado; toda vista la revisa Diego.
+- **Decisión:** RLS automático activado; toda vista la revisan Wilson e Iker (actualizado por [[D-10 Wilson responsable de la base de datos]]).
 - **Motivo:** Ninguna tabla queda desprotegida por olvido.
 - **Alternativas:** _(completar)_
 - **Consecuencias:** _(completar)_
