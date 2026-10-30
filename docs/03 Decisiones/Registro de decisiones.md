@@ -3,7 +3,7 @@ tags: [decision]
 ---
 # Registro de decisiones
 
-Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Decisión»). Siguiente número libre: **D-10**.
+Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Decisión»). Siguiente número libre: **D-11**.
 
 | Decisión | Estado |
 |---|---|
@@ -16,3 +16,4 @@ Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Deci
 | [[D-07 Quién puede enviar mensajes]] | Propuesta |
 | [[D-08 Reglas contra reseñas falsas]] | Propuesta |
 | [[D-09 Correos de confirmación]] | Pendiente |
+| [[D-10 Wilson responsable de la base de datos]] | Tomada |

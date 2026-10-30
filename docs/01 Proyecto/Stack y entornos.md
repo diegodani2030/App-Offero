@@ -15,7 +15,7 @@ No se agregan frameworks, backends ni servicios pagos sin una decisión registra
 | Preview | Vercel, un enlace por PR | offero-dev | Revisar antes de fusionar |
 | Producción | Vercel, URL principal | offero-prod | Solo datos reales |
 
-- RLS automático activado en ambos proyectos. Solo Diego ejecuta SQL en prod.
+- RLS automático activado en ambos proyectos. Solo Wilson (responsable de la base de datos) y Diego (respaldo) ejecutan SQL en prod. Ver [[D-10 Wilson responsable de la base de datos]].
 - Cada cambio de esquema es un archivo en `supabase/sql/` con nombre `AAAAMMDD_HHMM_descripcion.sql`.
 - La clave secreta (service_role) nunca va al frontend ni a GitHub.
 

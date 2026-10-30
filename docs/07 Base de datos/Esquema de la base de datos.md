@@ -3,6 +3,8 @@ tags: [tabla, tecnico]
 ---
 # Esquema de la base de datos
 
+**Responsable:** Wilson (respaldo: Diego) — ver [[D-10 Wilson responsable de la base de datos]]. Todo PR con SQL lo revisan Wilson (esquema) e Iker (RLS).
+
 Orden de creación (Plan, Parte 3, 6.1):
 1. [[profiles]] — Diego — mar 3 nov
 2. [[categories]] — Daniel — mar 10 nov
@@ -36,4 +38,4 @@ erDiagram
 | reports.status | open, reviewed, dismissed |
 | reports.target_type | business, request, review |
 
-Las vistas (`public_profiles`, promedio de reseñas) no tienen RLS: Diego revisa cada una antes de fusionar.
+Las vistas (`public_profiles`, promedio de reseñas) no tienen RLS: Wilson e Iker revisan cada una antes de fusionar.
