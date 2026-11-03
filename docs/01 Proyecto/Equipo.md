@@ -11,14 +11,14 @@ tags: [proyecto, equipo]
 | Wilson David Hernández Sánchez | wilsonher65-hash | [[M3 Solicitudes]], [[M5 Mensajería]] | **Responsable de la base de datos** (esquema, revisión del SQL, aplicación en prod) — ver [[D-10 Wilson responsable de la base de datos]] | 12 |
 
 ## A quién preguntar
-| Tema | Primero | Después |
-|---|---|---|
-| Git, diseño, Tailwind | Daniel | Diego |
-| Base de datos y SQL | Wilson | Diego |
-| Políticas RLS y permisos | Iker | Wilson |
-| Autenticación, sesión, roles | Diego | Iker |
-| Vercel, despliegue | Diego | Daniel |
-| Formularios y Server Actions | Wilson | Diego |
+| Tema                         | Primero | Después |
+| ---------------------------- | ------- | ------- |
+| Git, diseño, Tailwind        | Daniel  | Diego   |
+| Base de datos y SQL          | Wilson  | Diego   |
+| Políticas RLS y permisos     | Iker    | Wilson  |
+| Autenticación, sesión, roles | Diego   | Iker    |
+| Vercel, despliegue           | Diego   | Daniel  |
+| Formularios y Server Actions | Wilson  | Diego   |
 
 Regla de atasco: 45 min solo → Discord #ayuda → a las 2 h, mencionar a Diego.
 
