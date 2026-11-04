@@ -7,7 +7,7 @@ Cuando algo te cuesta más de una hora, escribe una nota corta aquí (plantilla 
 
 ## Por tema
 - Git:
-- Next.js:
+- Next.js: [[De Flask a Next.js]]
 - Supabase y RLS:
 - Vercel:
 - Tailwind:
