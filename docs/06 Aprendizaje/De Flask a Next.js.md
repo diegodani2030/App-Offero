@@ -14,7 +14,7 @@ tema: nextjs
 | Ruta con parámetro | `/tareas/<id>` | Carpeta `[requestId]` |
 | Vistas | Plantillas Jinja | Componentes de React (JSX) |
 | Formularios | `request.form` en un POST | Server Action que recibe los datos del formulario |
-| Base de datos | SQLite | PostgreSQL en Supabase |
+| Base de datos | MySQL | PostgreSQL en Supabase |
 | Permisos | `login_required` o revisar permisos en la vista | Protección en el servidor + políticas RLS en la base de datos |
 | Correr la app | `flask run` | `npm run dev` |
 
