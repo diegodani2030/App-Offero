@@ -9,7 +9,7 @@ async function EstadoConexion() {
     <p>
       {error
         ? `Error: ${error.message}`
-        : "Conexión con Supabase correcta ✅"}
+        : "Conexión con Supabase correcta y en curso ✅"}
     </p>
   );
 }
