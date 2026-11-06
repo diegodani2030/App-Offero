@@ -1,12 +1,6 @@
 ---
 tags: [decision]
 id: D-09
-estado: Pendiente
-fecha: 2026-10-29
----
----
-tags: [decision]
-id: D-09
 estado: Tomada
 fecha: 2026-10-29
 ---

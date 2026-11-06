@@ -25,7 +25,7 @@ No se agregan frameworks, backends ni servicios pagos sin una decisión registra
 | offero-dev  | http://localhost:3000                          | http://localhost:3000/** |
 | offero-prod | http://localhost:3000 *(temporal hasta T0-03)* | http://localhost:3000/** |
 
-- Proveedor Email activo en ambos. «Confirm email» pendiente de [[D-09 Correos de confirmación]] (T0-02).
+- Proveedor Email activo en ambos. «Confirm email» desactivado en ambos: ver [[D-09 Correos de confirmación]].
 - Pendiente en T0-03: Site URL de prod → URL de Vercel; en dev agregar `https://*.vercel.app/**` para las previews.
 
 Ver también: [[Esquema de la base de datos]].
