@@ -20,9 +20,9 @@ No se agregan frameworks, backends ni servicios pagos sin una decisión registra
 - La clave secreta (service_role) nunca va al frontend ni a GitHub.
   
   ## Auth (T0-01, 3 nov 2026)
-| Proyecto | Site URL | Redirect URLs |
-|---|---|---|
-| offero-dev | http://localhost:3000 | http://localhost:3000/** |
+| Proyecto    | Site URL                                       | Redirect URLs            |
+| ----------- | ---------------------------------------------- | ------------------------ |
+| offero-dev  | http://localhost:3000                          | http://localhost:3000/** |
 | offero-prod | http://localhost:3000 *(temporal hasta T0-03)* | http://localhost:3000/** |
 
 - Proveedor Email activo en ambos. «Confirm email» pendiente de [[D-09 Correos de confirmación]] (T0-02).
