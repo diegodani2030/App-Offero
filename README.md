@@ -47,6 +47,11 @@ Después de instalar Node y Git, cierra y vuelve a abrir PowerShell.
 ## Estructura del repositorio
 
 - `app-offero/`: el proyecto de Next.js. Las páginas están en `src/app/` (cada carpeta es una ruta) y los componentes en `src/components/`.
+  - `src/lib/supabase/`: la única forma de conectarse a Supabase. **Nadie crea otro cliente de Supabase; usa los de `src/lib/supabase/`**:
+    - En páginas, layouts, Server Actions y Route Handlers: `import { createClient } from "@/lib/supabase/server"` y `const supabase = await createClient();`.
+    - En componentes con `"use client"`: `import { createClient } from "@/lib/supabase/client"` y `const supabase = createClient();`.
+    - Solo se usa la clave publishable. La clave secreta (`service_role`) nunca va en el código.
+  - `src/proxy.js`: corre antes de cada petición y renueva la sesión. No revisa permisos: eso se hace en cada página o acción y en RLS.
 - `docs/`: la bóveda de Obsidian con la documentación del equipo.
 - `supabase/sql/`: los cambios de la base de datos, un archivo por cambio (se crea con la primera tabla).
 - `.github/`: plantillas de pull requests e issues.
