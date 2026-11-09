@@ -29,6 +29,8 @@ erDiagram
   profiles ||--o{ reports : crea
 ```
 
+Antes de escribir el SQL de cada tabla, el equipo la diseña en la [[Sesión de diseño (T0-07)]].
+
 ## Valores acordados
 | Campo | Valores |
 |---|---|
