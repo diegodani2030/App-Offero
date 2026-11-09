@@ -2,8 +2,10 @@
 tags: [tabla]
 responsable: Diego
 creada_en_dev: 2026-11-07
-creada_en_prod:
-archivo_sql: supabase/sql/20261107_1634_profiles.sql
+creada_en_prod: 2026-11-07
+archivo_sql:
+  - supabase/sql/20261107_1634_profiles.sql
+  - supabase/sql/20261107_2038_profiles_rls.sql
 ---
 # Tabla `profiles`
 
@@ -32,7 +34,9 @@ Perfil de cada usuario con su rol (client, provider, admin). Se crea solo al reg
 - El Security Advisor la marca como `security_definer_view`: es intencional.
 
 ## Políticas RLS
-RLS activado. Las políticas van en T0-05 (#66), en otro archivo. Hasta entonces, nadie lee ni escribe desde la app.
+RLS activado. Políticas, permisos y funciones de ayuda en `20261107_2038_profiles_rls.sql` (T0-05, #66).
+
+Dos candados: los **permisos** (GRANT) dicen qué operaciones y columnas; las **políticas** (RLS) dicen qué filas. `anon` no tiene ningún permiso; `authenticated` tiene `SELECT` y `UPDATE (full_name)`.
 
 | Operación | Quién | Condición |
 |---|---|---|
@@ -42,11 +46,28 @@ RLS activado. Las políticas van en T0-05 (#66), en otro archivo. Hasta entonces
 | DELETE | Nadie en el MVP | — |
 
 - [ ] Revisada por Iker con la checklist de RLS
-- [ ] Probada con dos cuentas de roles distintos
+- [x] Probada con dos cuentas de roles distintos
+
+## Funciones de ayuda
+- `public.get_my_role()`: rol del usuario actual; `null` sin sesión.
+- `public.is_admin()`: `true` si el usuario actual es admin; si no, `false`.
+- Las dos son `security definer` (leen `profiles` sin pasar por su RLS; si no, la política de SELECT entraría en recursión infinita) y tienen `search_path` fijo. Solo `authenticated` puede ejecutarlas. Uso en el README, sección «Base de datos».
 
 ## Pruebas en dev (7 nov 2026)
 - Usuario creado desde el panel → perfil con el inicio del correo como nombre y rol `client`.
 - Registro directo a la API pidiendo `role = admin` → perfil con rol `client`.
+
+## Pruebas de RLS en dev (9 nov 2026)
+Hechas en el SQL Editor fingiendo el token de cada usuario (`begin`, `set_config('request.jwt.claims', ...)`, `set local role authenticated`, consulta, `rollback`). El selector de rol ya no aparece en el editor.
+
+| Prueba | Como | Resultado |
+|---|---|---|
+| Leer `profiles` | Hacker (client) | 1 fila: la suya ✅ |
+| `update ... set role = 'admin'` en su fila | Hacker | `permission denied for table profiles` ✅ |
+| `update ... set full_name` en su fila | Hacker | 1 fila actualizada ✅ |
+| `update ... set full_name` en la fila de otro | Hacker | 0 filas ✅ |
+| Leer `profiles` | diegodani2040 (admin) | 5 filas ✅ |
+| Leer `profiles` | anon | `permission denied for table profiles` ✅ |
 
 ## Relaciones
 - Apunta a `auth.users` (id).
