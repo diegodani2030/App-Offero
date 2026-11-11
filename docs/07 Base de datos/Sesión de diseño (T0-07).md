@@ -58,7 +58,11 @@ Preguntas para arrancar; las respuestas van en la nota de cada tabla.
 | 4 | Estados de quotes: ¿quién pasa de `pending` a `accepted`, `rejected` o `withdrawn`? | | | |
 
 ## Acuerdos
-_(Wilson anota aquí durante la sesión)_
+Escritos después de la sesión (T1-40, #171). Lo marcado como **pendiente** se está confirmando con el equipo; no se crea el SQL de una tabla hasta que su parte esté confirmada.
+
+1. **Moderación de mensajes ([[messages]]):** si un usuario usa lenguaje inapropiado con otro, se le podría dar una **advertencia** o **limitarle los mensajes**. Falta definir cómo se reporta, quién decide la sanción y cuánto dura. Como M5 quedó P1 ([[D-11 Contacto entre cliente y proveedor|D-11]]), se define antes de crear `messages`.
+2. **Propuestas de tablas:** **pendiente** confirmar qué se aceptó y qué cambió en cada una.
+3. **D-06, D-07 y D-08:** **pendiente** confirmar si pasan de «Propuesta» a «Tomada».
 
 ## Decisiones nuevas
 Cada decisión nueva va como nota en `03 Decisiones` con la plantilla «Decisión» (D-11 en adelante) y se enlaza aquí.
