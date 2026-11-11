@@ -23,7 +23,7 @@ export default function Home() {
         Cuéntanos qué buscas y proveedores de Bogotá te envían sus ofertas.
         Compara precio, tiempo de entrega y condiciones antes de decidir.
       </p>
-      <section className="mt-16">
+      <section id="como-funciona" className="mt-16 scroll-mt-24">
         <h2 className="text-2xl font-semibold">¿Cómo funciona?</h2>
         <ol className="mt-6 grid gap-6 sm:grid-cols-3">
           {pasos.map((paso, i) => (
