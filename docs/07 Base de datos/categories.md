@@ -11,7 +11,7 @@ archivo_sql: supabase/sql/20261109_1521_categories.sql
 **Responsable:** Daniel · **Módulo:** [[M2 Negocios y categorías]]
 Categorías reales que define el PO. Las usan los negocios (a través de `business_categories`) y las solicitudes.
 
-> Creada en offero-dev el 9 nov (T1-06, #99). La columna `code` se acordó en la [[Sesión de diseño (T0-07)]] y se agrega con un archivo SQL nuevo.
+> Creada en offero-dev el 9 nov (T1-06, #99). La columna `code` se acordó en la [[Sesión de diseño (T0-07)]] y se agregó el 11 nov con `20261111_2239_categories_code.sql`.
 
 ## Diagrama
 ```mermaid
@@ -31,7 +31,7 @@ erDiagram
 | Campo | Tipo | Reglas |
 |---|---|---|
 | id | uuid | Clave primaria, automática. Es lo que guardan las otras tablas |
-| code | text | Obligatorio y único. Letras y números, por ejemplo `Tec01`. **Pendiente:** formato exacto (lo define Daniel) |
+| code | text | Obligatorio y único. Una mayúscula, dos minúsculas y dos números, sin tildes ni ñ (`Tec01`, `Hog02`). Regla: `check (code ~ '^[A-Z][a-z]{2}[0-9]{2}$')` |
 | name | text | Obligatorio, único, de 2 a 60 caracteres |
 | description | text | Opcional |
 | created_at | timestamptz | Automático |
