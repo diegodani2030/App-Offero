@@ -3,7 +3,7 @@ tags: [tabla, tecnico]
 ---
 # Esquema de la base de datos
 
-**Responsable:** Wilson (respaldo: Diego) — ver [[D-10 Wilson responsable de la base de datos]]. Todo PR con SQL lo revisan Wilson (esquema) e Iker (RLS).
+**Responsable:** Wilson (respaldo: Diego) — ver [[D-10 Wilson responsable de la base de datos]]. Todo PR con SQL lo revisan Wilson (esquema) e Iker (RLS). Iker revisa con la [[Checklist de revisión de RLS]].
 
 Orden de creación (Plan, Parte 3, 6.1):
 1. [[profiles]] — Diego — mar 3 nov
@@ -28,6 +28,8 @@ erDiagram
   businesses ||--o{ reviews : recibe
   profiles ||--o{ reports : crea
 ```
+
+Antes de escribir el SQL de cada tabla, el equipo la diseña en la [[Sesión de diseño (T0-07)]].
 
 ## Valores acordados
 | Campo | Valores |

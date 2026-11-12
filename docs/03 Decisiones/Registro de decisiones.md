@@ -3,7 +3,7 @@ tags: [decision]
 ---
 # Registro de decisiones
 
-Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Decisión»). Siguiente número libre: **D-11**.
+Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Decisión»). Siguiente número libre: **D-13**.
 
 | Decisión | Estado |
 |---|---|
@@ -17,3 +17,5 @@ Toda decisión que afecte a más de una persona tiene su nota (plantilla: «Deci
 | [[D-08 Reglas contra reseñas falsas]] | Propuesta |
 | [[D-09 Correos de confirmación]] | Tomada |
 | [[D-10 Wilson responsable de la base de datos]] | Tomada |
+| [[D-11 Contacto entre cliente y proveedor]] | Tomada |
+| [[D-12 Cache Components desactivado en el MVP]] | Tomada |

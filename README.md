@@ -47,9 +47,60 @@ Después de instalar Node y Git, cierra y vuelve a abrir PowerShell.
 ## Estructura del repositorio
 
 - `app-offero/`: el proyecto de Next.js. Las páginas están en `src/app/` (cada carpeta es una ruta) y los componentes en `src/components/`.
+  - `src/lib/supabase/`: la única forma de conectarse a Supabase. **Nadie crea otro cliente de Supabase; usa los de `src/lib/supabase/`**:
+    - En páginas, layouts, Server Actions y Route Handlers: `import { createClient } from "@/lib/supabase/server"` y `const supabase = await createClient();`.
+    - En componentes con `"use client"`: `import { createClient } from "@/lib/supabase/client"` y `const supabase = createClient();`.
+    - Solo se usa la clave publishable. La clave secreta (`service_role`) nunca va en el código.
+  - `src/proxy.js`: corre antes de cada petición y renueva la sesión. No revisa permisos: eso se hace en cada página o acción y en RLS.
 - `docs/`: la bóveda de Obsidian con la documentación del equipo.
 - `supabase/sql/`: los cambios de la base de datos, un archivo por cambio (se crea con la primera tabla).
 - `.github/`: plantillas de pull requests e issues.
+
+## Base de datos
+
+Cada cambio es un archivo en `supabase/sql/` con nombre `AAAAMMDD_HHMM_descripcion.sql`. Se aplica una sola vez, primero en offero-dev y antes de fusionar en offero-prod. Si algo cambia, se crea un archivo nuevo.
+
+### Funciones de ayuda
+
+Úsalas en tus políticas en vez de consultar `profiles` otra vez.
+
+- `public.is_admin()`: devuelve `true` si quien hace la petición es admin. Úsala cuando el admin pueda hacer algo que los demás no, por ejemplo ver todos los reportes o un negocio oculto: `for select to authenticated using (... or (select public.is_admin()))`.
+- `public.get_my_role()`: devuelve `'client'`, `'provider'` o `'admin'`. Úsala cuando la regla dependa del rol, por ejemplo que solo un proveedor pueda enviar cotizaciones: `for insert to authenticated with check ((select public.get_my_role()) = 'provider')`.
+
+Estas funciones no están disponibles para `anon` (visitantes sin sesión). Escribe siempre `to authenticated` en toda política que las llame: sin eso, una petición sin sesión falla con `permission denied for function` en vez de devolver `false`.
+
+Escríbelas dentro de `(select ...)`, igual que `(select auth.uid())`: así PostgreSQL las evalúa una vez por consulta y no una vez por fila.
+
+### Campos que el usuario no puede cambiar
+
+Mecanismo elegido: **permisos por columna**. Se quita el permiso de actualizar toda la tabla y se da solo sobre las columnas editables:
+
+```sql
+revoke all on public.mi_tabla from anon, authenticated;
+grant select on public.mi_tabla to authenticated;
+grant update (columna_editable_1, columna_editable_2) on public.mi_tabla to authenticated;
+-- Si la app crea o borra filas en esa tabla, da también insert o delete (con su política).
+-- Sin ese grant, la app falla con permission denied aunque exista la política.
+```
+
+Así nadie cambia su propio `role` en `profiles`, ni `owner_id`, `client_id` o `is_hidden` en las demás tablas, aunque tenga una política de UPDATE. Un cambio en una columna protegida falla con `permission denied`. Lo que solo puede cambiar el admin (como `is_hidden` o el rol) se hace con una función propia, revisada por Iker.
+
+Los permisos se leen siempre de `profiles.role`, nunca de los metadatos del usuario (`user_metadata`): el usuario puede editarlos.
+
+### Cómo probar las políticas
+
+El SQL Editor corre como `postgres`, que se salta RLS: una consulta normal ahí no prueba nada. Finge ser un usuario dentro de una transacción que se deshace al final:
+
+```sql
+begin;
+-- Finge el token del usuario (cambia el nombre por el de tu usuario de prueba).
+select set_config('request.jwt.claims', json_build_object('sub', (select id from public.profiles where full_name = 'Hacker'), 'role', 'authenticated')::text, true);
+set local role authenticated;   -- para un visitante sin sesión: set local role anon;
+select * from public.mi_tabla;  -- la consulta que quieres probar
+rollback;                       -- nada de lo anterior se guarda
+```
+
+Prueba siempre en offero-dev y con dos usuarios de roles distintos. Si un `update` o `delete` no devuelve filas, el editor muestra el resultado anterior: envuélvelo así para ver cuántas filas cambió: `with x as (update ... returning id) select count(*) from x;`.
 
 ## Cómo trabajamos
 
