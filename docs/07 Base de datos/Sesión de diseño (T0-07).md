@@ -58,7 +58,20 @@ Preguntas para arrancar; las respuestas van en la nota de cada tabla.
 | 4 | Estados de quotes: ¿quién pasa de `pending` a `accepted`, `rejected` o `withdrawn`? | | | |
 
 ## Acuerdos
-_(Wilson anota aquí durante la sesión)_
+Escritos después de la sesión (T1-40, #171). Lo marcado como **pendiente** se está confirmando con el equipo; no se crea el SQL de una tabla hasta que su parte esté confirmada.
+
+### Por tabla
+- **[[profiles]]:** ya creada; sin cambios.
+- **[[categories]]:** cada categoría tendrá un **código** para diferenciar los nichos. El código combina letras mayúsculas y minúsculas con números (por ejemplo, `Tec01` o `Hog02`) y debe cumplir unas reglas de formato para que la categoría sea válida. **Pendiente:** Daniel define el formato exacto.
+- **[[requests]]:** el título y la descripción tendrán un mínimo y un máximo de caracteres. Habrá un sistema de búsqueda que ayude a los proveedores a encontrar los pedidos.
+- **[[businesses]]:** si un proveedor sancionado no resuelve su sanción en el plazo dado, su negocio queda oculto (`is_hidden`).
+- **[[reports]]:** una persona solo puede reportar una vez el mismo caso. Los reportes sirven para suspender al proveedor y tener más control sobre lo que se dice.
+- **[[reviews]]:** calificación de 1 a 5 con su comentario.
+- **[[quotes]]:** sin acuerdos todavía.
+- **[[messages]]:** habrá un control del lenguaje en el chat para evitar lenguaje inapropiado; a quien lo use se le puede dar una advertencia o limitarle los mensajes. **Pendiente:** cómo se reporta, quién decide la sanción y cuánto dura. Como M5 quedó P1 ([[D-11 Contacto entre cliente y proveedor|D-11]]), se define antes de crear `messages`.
+
+### Otros
+- **D-06, D-07 y D-08:** **pendiente** confirmar si pasan de «Propuesta» a «Tomada».
 
 ## Decisiones nuevas
 Cada decisión nueva va como nota en `03 Decisiones` con la plantilla «Decisión» (D-11 en adelante) y se enlaza aquí.
