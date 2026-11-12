@@ -1,17 +1,17 @@
 ---
 tags: [tabla]
 responsable: Wilson
-estado: propuesta
-creada_en_dev:
+estado: creada en dev
+creada_en_dev: 2026-11-12
 creada_en_prod:
-archivo_sql:
+archivo_sql: supabase/sql/20261112_1619_requests.sql
 ---
 # Tabla `requests`
 
 **Responsable:** Wilson · **Módulo:** [[M3 Solicitudes]]
 Solicitudes de los clientes: qué necesitan, cuánto, dónde, para cuándo y de qué categoría.
 
-> **Propuesta para la [[Sesión de diseño (T0-07)]].** Todavía no hay nada en Supabase: se crea en T1-11 (#104) con lo que se acuerde.
+> **Creada en offero-dev el 12 nov 2026** con `supabase/sql/20261112_1619_requests.sql` (T1-11, #104). Falta offero-prod: se aplica antes de fusionar el PR. Las pruebas de permisos son T1-12 (#105).
 
 ## Diagrama
 ```mermaid
@@ -43,9 +43,9 @@ erDiagram
 | client_id | uuid → `profiles.id` | Obligatorio. Por defecto `auth.uid()`: se llena solo con el usuario actual. |
 | category_id | uuid → `categories.id` | Obligatorio. |
 | title | text | Obligatorio, de 5 a 120 caracteres (CHECK). |
-| description | text | Obligatorio, hasta 2000 caracteres (CHECK). |
+| description | text | Obligatorio, de 10 a 2000 caracteres (CHECK). El mínimo de 10 está por confirmar con Diego. |
 | quantity | integer | Obligatorio, mayor que 0 (CHECK). |
-| location | text | Obligatorio: ciudad y barrio. |
+| location | text | Obligatorio, de 2 a 200 caracteres (CHECK): ciudad y barrio. |
 | deadline | date | Obligatorio. Solo fecha, sin hora. Que sea futura se valida en el servidor al crear. |
 | status | text | `open`, `awarded` o `cancelled` (CHECK). Por defecto `open`. |
 | is_hidden | boolean | Por defecto `false`. Solo lo cambia el admin. |
@@ -93,11 +93,15 @@ Todas las políticas van `to authenticated`.
 ## 5. Moderación
 Lleva `is_hidden`. Una solicitud oculta deja de verla el proveedor; el cliente y el admin sí la siguen viendo. Ocultar lo hace el admin con una función propia en M7 (Iker).
 
-## Para decidir en la sesión
+## Cómo quedó en el SQL
+- `anon` no ve solicitudes en el MVP: no tiene ningún permiso sobre la tabla.
+- Las dos claves foráneas quedaron con `restrict`.
+- Índices en `client_id`, `category_id` y `status`.
+
+## Pendiente
 1. ¿Se puede editar una solicitud que ya tiene cotizaciones? **Propuesta:** no, para que nadie cambie las condiciones después de que los proveedores cotizaron. Se aplica cuando exista `quotes`. Decide el PO (duda 3).
-2. ¿Un visitante sin sesión (`anon`) ve las solicitudes abiertas? **Propuesta:** no en el MVP.
-3. ¿Está bien `restrict` en las dos claves foráneas?
-4. ¿Hace falta un índice? **Propuesta:** en `client_id`, `category_id` y `status`, porque las listas filtran por ellos.
+2. Confirmar el mínimo de 10 caracteres de `description`.
+3. Cuando exista `quotes`: el proveedor también ve las solicitudes que cotizó (Sprint 3, con Diego).
 
 - [ ] Revisada por Iker con la checklist de RLS
 - [ ] Probada con dos cuentas de roles distintos
