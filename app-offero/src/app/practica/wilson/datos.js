@@ -1,0 +1,51 @@
+// Solicitudes inventadas para practicar. En la app real vendrán de Supabase.
+export const solicitudes = [
+  {
+    id: 1,
+    titulo: "Sillas para oficina",
+    cantidad: 50,
+    fechaLimite: "2026-11-30",
+    estado: "open",
+    cotizaciones: 3,
+  },
+  {
+    id: 2,
+    titulo: "Mesas de reunión",
+    cantidad: 10,
+    fechaLimite: "2026-12-05",
+    estado: "awarded",
+    cotizaciones: 5,
+  },
+  {
+    id: 3,
+    titulo: "Cajas de cartón",
+    cantidad: 200,
+    fechaLimite: "2026-12-15",
+    estado: "cancelled",
+    cotizaciones: 0,
+  },
+  {
+    id: 4,
+    titulo: "Uniformes para meseros",
+    cantidad: 25,
+    fechaLimite: "2026-12-01",
+    estado: "open",
+    cotizaciones: 0,
+  },
+  {
+    id: 5,
+    titulo: "Impresión de volantes",
+    cantidad: 1000,
+    fechaLimite: "2026-11-25",
+    estado: "open",
+    cotizaciones: 2,
+  },
+  {
+    id: 6,
+    titulo: "Botellones de agua",
+    cantidad: 40,
+    fechaLimite: "2026-12-10",
+    estado: "awarded",
+    cotizaciones: 1,
+  },
+];

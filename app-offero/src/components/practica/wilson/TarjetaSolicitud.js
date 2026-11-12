@@ -5,6 +5,7 @@ export default function TarjetaSolicitud({
   cantidad,
   fechaLimite,
   estado,
+  cotizaciones,
   destacado = false,
 }) {
   return (
@@ -15,6 +16,11 @@ export default function TarjetaSolicitud({
       <p>Cantidad: {cantidad}</p>
       <p>Fecha límite: {fechaLimite}</p>
       <EtiquetaEstado estado={estado} />
+      {/* Condicional 2 (&&): solo aparece si no hay cotizaciones.
+          Se compara con === 0 porque {cotizaciones && ...} pintaría un "0" en pantalla. */}
+      {cotizaciones === 0 && (
+        <p className="mt-2 text-sm text-gray-500">Sin cotizaciones todavía</p>
+      )}
     </article>
   );
 }
