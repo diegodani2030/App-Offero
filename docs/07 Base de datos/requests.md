@@ -104,7 +104,7 @@ Lleva `is_hidden`. Una solicitud oculta deja de verla el proveedor; el cliente y
 3. Cuando exista `quotes`: el proveedor también ve las solicitudes que cotizó (Sprint 3, con Diego).
 
 - [ ] Revisada por Iker con la checklist de RLS
-- [ ] Probada con dos cuentas de roles distintos
+- [x] Probada con dos cuentas de roles distintos (T1-12, #105, 13 nov 2026: 33 de 33 pruebas correctas con visitante, cliente A, cliente B, proveedor y admin)
 
 ## Relaciones
 - Apunta a [[profiles]] (`client_id`) y a [[categories]] (`category_id`).
