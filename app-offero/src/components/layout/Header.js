@@ -1,24 +1,10 @@
 import Link from "next/link";
 import MenuHamburguesa from "./MenuHamburguesa";
-import { createClient } from "@/lib/supabase/server";
+import { obtenerUsuario } from "@/services/auth";
 import { cerrarSesion } from "@/app/login/actions";
 
 export default async function Header() {
-  const supabase = await createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  let nombre = null;
-  if (user) {
-    const { data: perfil } = await supabase
-      .from("profiles")
-      .select("full_name")
-      .eq("id", user.id)
-      .single();
-    nombre = perfil?.full_name ?? user.email;
-  }
+  const usuario = await obtenerUsuario();
 
   return (
     <header className="sticky top-0 z-10 border-b border-[#263049] bg-[#07090f]">
@@ -29,9 +15,9 @@ export default async function Header() {
 
         <div className="flex items-center gap-4 md:gap-6">
           <div className="flex items-center gap-4 md:order-last">
-            {user ? (
+            {usuario ? (
               <>
-                <span className="hidden text-sm text-slate-400 sm:inline">Hola, {nombre}</span>
+                <span className="hidden text-sm text-slate-400 sm:inline">Hola, {usuario.nombre}</span>
                 <form action={cerrarSesion}>
                   <button
                     type="submit"
