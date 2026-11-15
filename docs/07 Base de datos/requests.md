@@ -1,9 +1,9 @@
 ---
 tags: [tabla]
 responsable: Wilson
-estado: creada en dev
+estado: creada en dev y prod
 creada_en_dev: 2026-11-12
-creada_en_prod:
+creada_en_prod: 2026-11-14
 archivo_sql: supabase/sql/20261112_1619_requests.sql
 ---
 # Tabla `requests`
@@ -11,7 +11,7 @@ archivo_sql: supabase/sql/20261112_1619_requests.sql
 **Responsable:** Wilson · **Módulo:** [[M3 Solicitudes]]
 Solicitudes de los clientes: qué necesitan, cuánto, dónde, para cuándo y de qué categoría.
 
-> **Creada en offero-dev el 12 nov 2026** con `supabase/sql/20261112_1619_requests.sql` (T1-11, #104). Falta offero-prod: se aplica antes de fusionar el PR. Las pruebas de permisos son T1-12 (#105).
+> **Creada en offero-dev el 12 nov 2026 y en offero-prod el 14 nov 2026** con `supabase/sql/20261112_1619_requests.sql` (T1-11, #104). Permisos probados en T1-12 (#105).
 
 ## Diagrama
 ```mermaid
