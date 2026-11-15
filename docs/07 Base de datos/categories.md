@@ -1,9 +1,9 @@
 ---
 tags: [tabla]
 responsable: Daniel
-estado: creada en dev
+estado: creada en dev y prod
 creada_en_dev: 2026-11-09
-creada_en_prod:
+creada_en_prod: 2026-11-14
 archivo_sql: supabase/sql/20261109_1521_categories.sql
 ---
 # Tabla `categories`
