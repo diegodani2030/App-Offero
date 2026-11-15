@@ -43,10 +43,10 @@ erDiagram
 | client_id | uuid → `profiles.id` | Obligatorio. Por defecto `auth.uid()`: se llena solo con el usuario actual. |
 | category_id | uuid → `categories.id` | Obligatorio. |
 | title | text | Obligatorio, de 5 a 120 caracteres (CHECK). |
-| description | text | Obligatorio, de 10 a 2000 caracteres (CHECK). El mínimo de 10 está por confirmar con Diego. |
+| description | text | Obligatorio, de 10 a 2000 caracteres (CHECK). Mínimo confirmado por el PO (Diego) en el PR #189. |
 | quantity | integer | Obligatorio, mayor que 0 (CHECK). |
 | location | text | Obligatorio, de 2 a 200 caracteres (CHECK): ciudad y barrio. |
-| deadline | date | Obligatorio. Solo fecha, sin hora. Que sea futura se valida en el servidor al crear. |
+| deadline | date | Obligatorio. Solo fecha, sin hora. Que sea futura se valida en el servidor al crear y al editar (en las Server Actions). |
 | status | text | `open`, `awarded` o `cancelled` (CHECK). Por defecto `open`. |
 | is_hidden | boolean | Por defecto `false`. Solo lo cambia el admin. |
 | created_at | timestamptz | Automático (`now()`). |
@@ -100,8 +100,8 @@ Lleva `is_hidden`. Una solicitud oculta deja de verla el proveedor; el cliente y
 
 ## Pendiente
 1. ¿Se puede editar una solicitud que ya tiene cotizaciones? **Propuesta:** no, para que nadie cambie las condiciones después de que los proveedores cotizaron. Se aplica cuando exista `quotes`. Decide el PO (duda 3).
-2. Confirmar el mínimo de 10 caracteres de `description`.
-3. Cuando exista `quotes`: el proveedor también ve las solicitudes que cotizó (Sprint 3, con Diego).
+2. Cuando exista `quotes`: el proveedor también ve las solicitudes que cotizó (Sprint 3, con Diego).
+3. Suspendidos: en la base, un cliente suspendido todavía puede crear solicitudes. En la app lo frena `usuarioConPermiso()` (#190). Se decide en M7 qué bloquea la suspensión (duda 1 de la sesión de diseño).
 
 - [ ] Revisada por Iker con la checklist de RLS
 - [x] Probada con dos cuentas de roles distintos (T1-12, #105, 13 nov 2026: 33 de 33 pruebas correctas con visitante, cliente A, cliente B, proveedor y admin)
