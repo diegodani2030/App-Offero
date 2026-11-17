@@ -20,7 +20,7 @@ responsable: Iker
 
 ## App
 - [ ] La clave secreta (`service_role`) **nunca** está en el frontend ni en el repo.
-
+- [ ] Revisa **Advisors → Security** en Supabase después de crear la tabla: cada aviso nuevo queda corregido o aceptado con su motivo.
 ## Cómo probar
 El SQL Editor corre como `postgres`, que **se salta RLS**: así la prueba no cuenta. Finge ser un usuario dentro de una transacción que se deshace:
 
@@ -43,6 +43,16 @@ rollback;
 - `23514` → lo frenó un CHECK de la tabla.
 - Usa `count(*)`: si la consulta devuelve 0 filas, el editor muestra el resultado anterior.
 
+## Avisos del Advisor (revisado el 17 nov 2026, offero-dev)
+| Aviso | Estado | Motivo |
+|---|---|---|
+| `public_profiles` es *Security Definer View* | Aceptado | Intencional: solo expone `id` y `full_name` (T0-29) |
+| `rls_auto_enable()` ejecutable por `anon` y `authenticated` | Corregido | `20261117_1630_rls_auto_enable_permisos.sql` (T2-14) |
+| `is_admin()` y `get_my_role()` ejecutables por `authenticated` | Aceptado | Las usan las políticas; solo devuelven el rol de quien pregunta |
+| Leaked password protection desactivado | Pendiente | Revisar si el plan gratuito lo permite; si no, aceptado |
+
+
 Ver también [[Práctica de RLS - USING y WITH CHECK]] y el README, sección «Base de datos».
+
 
 Volver a [[Esquema de la base de datos]]
