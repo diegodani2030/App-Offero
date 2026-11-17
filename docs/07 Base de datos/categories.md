@@ -1,10 +1,13 @@
 ---
 tags: [tabla]
 responsable: Daniel
-estado: creada en dev
+estado: creada en dev y prod
 creada_en_dev: 2026-11-09
-creada_en_prod:
-archivo_sql: supabase/sql/20261109_1521_categories.sql
+creada_en_prod: 2026-11-17
+archivo_sql:
+  - supabase/sql/20261109_1521_categories.sql
+  - supabase/sql/20261111_2239_categories_code.sql
+  - supabase/sql/20261115_0100_categorias_iniciales.sql
 ---
 # Tabla `categories`
 
@@ -12,6 +15,8 @@ archivo_sql: supabase/sql/20261109_1521_categories.sql
 Categorías reales que define el PO. Las usan los negocios (a través de `business_categories`) y las solicitudes.
 
 > Creada en offero-dev el 9 nov (T1-06, #99). La columna `code` se acordó en la [[Sesión de diseño (T0-07)]] y se agregó el 11 nov con `20261111_2239_categories_code.sql`.
+>
+> **En offero-prod:** verificada el 17 nov 2026 con una consulta de solo lectura (tabla, columna `code`, 4 políticas, permisos y las 12 categorías iguales que en dev). La fecha exacta en que se aplicó en prod no quedó anotada.
 
 ## Diagrama
 ```mermaid
