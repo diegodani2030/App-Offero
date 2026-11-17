@@ -28,12 +28,21 @@ export default async function Header() {
                 </form>
               </>
             ) : (
-              <Link
-                href="/login"
-                className="text-sm font-semibold text-slate-300 hover:text-white"
-              >
-                Iniciar sesión
-              </Link>
+              <>
+                <Link
+                  href="/login"
+                  className="whitespace-nowrap text-sm font-semibold text-slate-300 hover:text-white"
+                >
+                  <span className="sm:hidden">Entrar</span>
+                  <span className="hidden sm:inline">Iniciar sesión</span>
+                </Link>
+                <Link
+                  href="/registro"
+                  className="whitespace-nowrap rounded-md bg-blue-500 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-400"
+                >
+                  Registrarse
+                </Link>
+              </>
             )}
           </div>
 
