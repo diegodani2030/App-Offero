@@ -26,6 +26,6 @@ Registro, inicio y cierre de sesión; perfil con rol; protección de rutas; cont
 _(qué funcionó, qué falta, dudas abiertas)_
 
 ## Aprendizajes
-- _(enlaza notas de `06 Aprendizaje`)_
+- [[Contrato de autenticación (sesión T1-03)]]: cómo obtener el usuario, proteger páginas y Server Actions, y usar `is_admin()` y `get_my_role()` en políticas. Referencia corta en el README, sección «Autenticación».
 
 Volver a [[Contexto del proyecto]]
