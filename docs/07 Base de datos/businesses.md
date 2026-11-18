@@ -1,9 +1,9 @@
 ---
 tags: [tabla]
 responsable: Daniel
-estado: creada en dev
+estado: creada en dev y prod
 creada_en_dev: 2026-11-15
-creada_en_prod:
+creada_en_prod: 2026-11-16
 archivo_sql: supabase/sql/20261115_0130_businesses.sql
 ---
 # Tabla `businesses`
@@ -11,7 +11,7 @@ archivo_sql: supabase/sql/20261115_0130_businesses.sql
 **Responsable:** Daniel · **Módulo:** [[M2 Negocios y categorías]]
 Los negocios de los proveedores. Un proveedor puede tener **varios** negocios y cada negocio puede tener **varias** categorías.
 
-> Creada en offero-dev el 15 nov (T1-08, #101) junto con `business_categories` y `business_contacts`, con lo acordado en la [[Sesión de diseño (T0-07)]] y en [[D-11 Contacto entre cliente y proveedor|D-11]].
+> Creada en offero-dev el 15 nov (T1-08, #101) junto con `business_categories` y `business_contacts`, con lo acordado en la [[Sesión de diseño (T0-07)]] y en [[D-11 Contacto entre cliente y proveedor|D-11]]. Aplicada en offero-prod el 16 nov.
 
 ## Diagrama
 ```mermaid

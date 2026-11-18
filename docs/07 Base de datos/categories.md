@@ -1,9 +1,9 @@
 ---
 tags: [tabla]
 responsable: Daniel
-estado: creada en dev
+estado: creada en dev y prod
 creada_en_dev: 2026-11-09
-creada_en_prod:
+creada_en_prod: 2026-11-14
 archivo_sql: supabase/sql/20261109_1521_categories.sql
 ---
 # Tabla `categories`
@@ -37,7 +37,7 @@ erDiagram
 | created_at | timestamptz | Automático |
 
 ## Categorías iniciales
-Lista **provisional** que definió el PO (Diego) el 12 nov 2026 para T1-07 (#100). Se ajusta con las entrevistas (OFF-056).
+Lista **provisional** que definió el PO (Diego) el 12 nov 2026 para T1-07 (#100). Se ajusta con las entrevistas (OFF-056). Cargada en offero-dev el 15 nov y en offero-prod el 16 nov (`20261115_0100_categorias_iniciales.sql`).
 
 | Código | Nombre | Descripción |
 |---|---|---|
