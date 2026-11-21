@@ -1,10 +1,13 @@
 "use client";
 
-// Maqueta del formulario de nueva solicitud (T1-14, #107): campos y diseño, todavía sin guardar.
-// Guardar es OFF-023 (#24): ahí se conecta una Server Action con useActionState,
-// que devuelve { errores, valores } y este componente los muestra junto a cada campo.
+import { useActionState } from "react";
+
+// Formulario de solicitud (T1-14 y OFF-023). Recibe la Server Action por props (accion),
+// así sirve para crear y, más adelante, para editar. La acción devuelve
+// { errores, valores } o { error }, y el formulario muestra cada error junto a su campo.
 // Los límites del navegador (minLength, max...) copian los CHECK de la tabla requests,
-// pero la validación que cuenta es la del servidor.
+// pero la validación que cuenta es la del servidor. Por eso el form lleva noValidate:
+// así siempre se ven los mensajes del servidor.
 
 const ESTILO_CAMPO =
   "rounded-md border border-[#263049] bg-[#0d111a] px-3 py-2 text-white placeholder:text-slate-500 focus:border-blue-400 focus:outline-none";
@@ -27,14 +30,13 @@ function Campo({ id, etiqueta, ayuda, error, children }) {
 }
 
 // fechaMinima llega de la página (hoy en Bogotá, AAAA-MM-DD) para no dejar elegir días pasados.
-export default function RequestForm({ categorias, fechaMinima, errores = {}, valores = {} }) {
-  function enviar(event) {
-    // Maqueta: todavía no guarda (eso llega en OFF-023).
-    event.preventDefault();
-  }
+export default function RequestForm({ accion, categorias, fechaMinima }) {
+  const [estado, enviar, pendiente] = useActionState(accion, {});
+  const errores = estado.errores ?? {};
+  const valores = estado.valores ?? {};
 
   return (
-    <form onSubmit={enviar} noValidate className="mt-8 flex flex-col gap-2">
+    <form action={enviar} noValidate className="mt-8 flex flex-col gap-2">
       <Campo id="titulo" etiqueta="¿Qué necesitas?" ayuda="Entre 5 y 120 caracteres." error={errores.titulo}>
         <input
           id="titulo"
@@ -132,11 +134,16 @@ export default function RequestForm({ categorias, fechaMinima, errores = {}, val
 
       <button
         type="submit"
-        className="mt-2 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500"
+        disabled={pendiente}
+        className="mt-2 rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-500 disabled:opacity-50"
       >
-        Publicar solicitud
+        {pendiente ? "Publicando…" : "Publicar solicitud"}
       </button>
-      <p className="text-center text-xs text-slate-500">Maqueta: todavía no guarda.</p>
+      {estado.error && (
+        <p role="alert" className="text-center text-sm text-red-400">
+          {estado.error}
+        </p>
+      )}
     </form>
   );
 }
