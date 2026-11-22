@@ -56,6 +56,20 @@ Después de instalar Node y Git, cierra y vuelve a abrir PowerShell.
 - `supabase/sql/`: los cambios de la base de datos, un archivo por cambio (se crea con la primera tabla).
 - `.github/`: plantillas de pull requests e issues.
 
+## Autenticación
+
+Todo lo del usuario actual pasa por `src/services/auth.js`. No llames a `supabase.auth.getUser()` ni consultes `profiles` por tu cuenta.
+
+- **Saber quién es el usuario:** `const usuario = await obtenerUsuario();`. Devuelve `null` si no hay sesión, o un objeto con `id`, `email`, `nombre`, `role` (`'client'`, `'provider'` o `'admin'`) y `suspendido`. Úsalo cuando la página se ve con o sin sesión, como el encabezado.
+- **Proteger una página:** escribe `await exigirUsuario()` en la **primera línea** de la página. Sin sesión, o con la cuenta suspendida, manda a `/login`. Para limitarla por rol pasa los roles permitidos: `await exigirUsuario(["provider"])`. Quien no tenga el rol vuelve a `/`. Ejemplo: `src/app/perfil/page.js`.
+- **Proteger una Server Action:** en la primera línea de la acción escribe `const usuario = await usuarioConPermiso(["provider"]); if (!usuario) return { error: "No tienes permiso." };`. Revisa la sesión, la suspensión y el rol, y devuelve un error en vez de redirigir para que el formulario lo muestre. Cada acción se revisa por sí sola, aunque la página ya esté protegida: una Server Action se puede llamar directamente, sin pasar por la página.
+- **En la base de datos:** las políticas RLS son la última defensa. Usa `is_admin()` y `get_my_role()` (ver [Funciones de ayuda](#funciones-de-ayuda)).
+
+Reglas:
+- Esconder un botón o un enlace **no** protege nada: cualquiera puede escribir la URL a mano. La revisión va en el servidor.
+- El rol se lee siempre de la tabla `profiles`, nunca de `user_metadata`, porque el usuario puede cambiar su `user_metadata`.
+- `auth.js` tiene `import "server-only"`: si lo importas en un componente con `"use client"`, la compilación falla a propósito.
+
 ## Base de datos
 
 Cada cambio es un archivo en `supabase/sql/` con nombre `AAAAMMDD_HHMM_descripcion.sql`. Se aplica una sola vez, primero en offero-dev y antes de fusionar en offero-prod. Si algo cambia, se crea un archivo nuevo.

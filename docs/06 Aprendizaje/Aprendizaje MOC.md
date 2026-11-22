@@ -8,6 +8,7 @@ Cuando algo te cuesta más de una hora, escribe una nota corta aquí (plantilla 
 ## Por tema
 - Git:
 - Next.js: [[De Flask a Next.js]]
+- Autenticación y roles: [[Contrato de autenticación (sesión T1-03)]]
 - Supabase y RLS: [[Práctica de PostgreSQL - restricciones y errores]],[[Práctica de RLS - USING y WITH CHECK]]
 - Vercel:
 - Tailwind:
