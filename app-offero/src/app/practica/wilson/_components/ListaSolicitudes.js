@@ -13,6 +13,7 @@ export default function ListaSolicitudes({ items }) {
       {items.map((item) => (
         <TarjetaSolicitud
           key={item.id}
+          id={item.id}
           titulo={item.titulo}
           cantidad={item.cantidad}
           fechaLimite={item.fechaLimite}
