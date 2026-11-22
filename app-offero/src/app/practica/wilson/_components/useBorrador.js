@@ -1,5 +1,5 @@
-"use client";
-
+// Next 3: un hook no necesita "use client": esa marca va en los componentes que
+// hacen de frontera. Este hook solo lo usa FormularioSolicitud, que ya es de cliente.
 import { useEffect, useState } from "react";
 
 // Guarda y recupera un borrador en localStorage. Devuelve [datos, setDatos] como useState.
