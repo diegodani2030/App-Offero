@@ -11,6 +11,7 @@ tags: [inicio]
 - [[Contexto del proyecto]] — la fuente de verdad del producto (antes: CONTEXTO)
 - [[Calendario]] — sprints, hitos y fechas
 - [[Equipo]] — quién es quién y quién hace qué
+- [[Recuperar el acceso a una cuenta]] — qué hacer si un usuario del piloto olvida su contraseña
 
 ## Mapa
 | Carpeta | Qué hay |
