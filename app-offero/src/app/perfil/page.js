@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { exigirUsuario } from "@/services/auth";
 import FormularioNombre from "@/components/perfil/FormularioNombre";
 import { guardarNombre } from "./actions";
@@ -35,6 +36,9 @@ export default async function PaginaPerfil() {
           </div>
         </dl>
         <p className="text-xs text-slate-500">El rol no se puede cambiar desde aquí.</p>
+        <Link href="/perfil/contrasena" className="text-sm font-semibold text-blue-400 hover:underline">
+          Cambiar contraseña
+        </Link>
       </div>
     </main>
   );
